@@ -1,4 +1,4 @@
-REATE OR REPLACE TABLE  San_Francisco_bikshare.bikeshare_regions AS
+CREATE OR REPLACE TABLE  San_Francisco_bikshare.bikeshare_regions AS
  SELECT * FROM  `bigquery-public-data.san_francisco_bikeshare.bikeshare_regions`;
 
 
@@ -25,7 +25,7 @@ ADD COLUMN start_date_date DATE;
 UPDATE San_Francisco_bikshare.bikeshare_trips
 SET start_date_date = DATE(start_date) WHERE start_date_date  is null;
 
--- Changing id type 
+-- Changi id type 
 
 ALTER TABLE `bigquery-course-328219.San_Francisco_bikshare.bikeshare_trips`
 ADD COLUMN start_station_id_string STRING,
@@ -45,7 +45,7 @@ ALTER TABLE `bigquery-course-328219.San_Francisco_bikshare.bikeshare_trips`
 RENAME COLUMN start_station_id_string TO start_station_id,
 RENAME COLUMN end_station_id_string TO end_station_id;
 
--- Updating the missing value for subscription type
+-- Update the missing value for subscription type
 UPDATE San_Francisco_bikshare.bikeshare_trips
 SET c_subscription_type = subscriber_type WHERE c_subscription_type is null;
 
@@ -62,7 +62,7 @@ SET bike_type  = CASE
 END
 WHERE bike_type is null;
 
--- Adding missing value for Longitude and Latitude 
+-- Add missing value for Longitude and Latitude 
 UPDATE San_Francisco_bikshare.bikeshare_trips AS t
 SET 
 start_station_longitude = 
@@ -92,7 +92,7 @@ WHERE
   OR end_station_longitude IS NULL;
 
 
--- Adding houre column 
+-- Add hour column 
 ALTER TABLE `bigquery-course-328219.San_Francisco_bikshare.bikeshare_trips`
 ADD COLUMN time_hour INTEGER,
 ADD COLUMN day_time STRING;
